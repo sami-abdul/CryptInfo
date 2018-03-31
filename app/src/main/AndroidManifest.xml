@@ -10,18 +10,17 @@
     <application
         android:name=".CryptInfoApp"
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".actvities.AssetActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:name=".actvities.AssetsActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".actvities.AssetDetailsActivity"
-            android:parentActivityName=".actvities.AssetActivity"
+            android:parentActivityName=".actvities.AssetsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
@@ -45,23 +44,8 @@
             android:name=".api.sync.DetailTaskService"
             android:enabled="true"
             android:exported="true" />
-        <service
-            android:name=".views.WidgetRemoteService"
-            android:exported="false"
-            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <receiver android:name=".views.WidgetProvider">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="ACTION_DATA_UPDATED" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/coin_widget_provider_info" />
-        </receiver>
-
-        <activity android:name=".actvities.AssetsActivity">
+        <activity android:name=".actvities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

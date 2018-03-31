@@ -24,8 +24,7 @@ import okhttp3.Request
 class AssetTaskService : GcmTaskService {
 
     companion object {
-        private val POP_COIN_SYMBOLS = arrayOf("BTC", "ETH", "XRP", "BCH", "ADA", "TRX", "EOS", "LTC", "MTL", "CHAT")
-//        private val POP_COIN_SYMBOLS = arrayOf("BTC", "ETH", "XRP")
+        private val POP_COIN_SYMBOLS = arrayOf("BTC")
         val ACTION_DATA_UPDATED = "ACTION_DATA_UPDATED"
     }
 
