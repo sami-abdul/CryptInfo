@@ -29,6 +29,10 @@ class AssetTaskService : GcmTaskService {
         val ACTION_DATA_UPDATED = "ACTION_DATA_UPDATED"
     }
 
+    constructor() {
+
+    }
+
     private val client = OkHttpClient()
 
     private var mContext: Context? = null

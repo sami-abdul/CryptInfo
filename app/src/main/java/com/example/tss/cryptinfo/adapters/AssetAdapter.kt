@@ -14,12 +14,9 @@ import com.example.tss.cryptinfo.api.AssetPreferences
 import com.example.tss.cryptinfo.utilities.ConstantsUtils
 import com.example.tss.cryptinfo.utilities.NumberUtils
 
-import butterknife.BindView
-import butterknife.ButterKnife
+class AssetAdapter(private val mContext: Context, private val mClickHandler: AssetAdapterOnclickHandler) : RecyclerView.Adapter<AssetAdapter.CoinViewHolder>() {
 
-class AssetAdapter(private val mContext: Context, private val mClickHandler: CoinAdapterOnclickHandler) : RecyclerView.Adapter<AssetAdapter.CoinViewHolder>() {
-
-    interface CoinAdapterOnclickHandler {
+    interface AssetAdapterOnclickHandler {
         fun onClick(symbol: String, name: String)
     }
 
@@ -46,7 +43,7 @@ class AssetAdapter(private val mContext: Context, private val mClickHandler: Coi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_coin_basic, parent, false)
+                .inflate(R.layout.item_asset_basic, parent, false)
 
         return CoinViewHolder(view)
     }
@@ -65,11 +62,11 @@ class AssetAdapter(private val mContext: Context, private val mClickHandler: Coi
         val trend = mCursor!!.getDouble(ConstantsUtils.POSITION_TREND)
 
         if (trend > 0.0) {
-            holder.mChangeTextView!!.background = mContext.resources.getDrawable(R.drawable.price_increase_green)
+            holder.mChangeTextView?.background = mContext.resources.getDrawable(R.drawable.price_increase_green)
         } else if (trend < 0.0) {
-            holder.mChangeTextView!!.background = mContext.resources.getDrawable(R.drawable.price_decrease_red)
+            holder.mChangeTextView?.background = mContext.resources.getDrawable(R.drawable.price_decrease_red)
         } else {
-            holder.mChangeTextView!!.background = mContext.resources.getDrawable(R.drawable.price_no_change_orange)
+            holder.mChangeTextView?.background = mContext.resources.getDrawable(R.drawable.price_no_change_orange)
         }
 
         holder.mSymbolTextView!!.text = coinSymbol
@@ -97,18 +94,12 @@ class AssetAdapter(private val mContext: Context, private val mClickHandler: Coi
     }
 
     inner class CoinViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        @BindView(R.id.symbol)
-        internal var mSymbolTextView: TextView? = null
-        @BindView(R.id.full_name)
-        internal var mNameTextView: TextView? = null
-        @BindView(R.id.price)
-        internal var mPriceTextView: TextView? = null
-        @BindView(R.id.change)
-        internal var mChangeTextView: TextView? = null
+        internal var mSymbolTextView: TextView? = itemView.findViewById(R.id.symbol)
+        internal var mNameTextView: TextView? = itemView.findViewById(R.id.full_name)
+        internal var mPriceTextView: TextView? = itemView.findViewById(R.id.price)
+        internal var mChangeTextView: TextView? = itemView.findViewById(R.id.change)
 
         init {
-            ButterKnife.bind(this, itemView)
-
             itemView.setOnClickListener(this)
         }
 

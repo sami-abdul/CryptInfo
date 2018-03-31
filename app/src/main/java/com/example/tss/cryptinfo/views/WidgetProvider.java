@@ -12,7 +12,7 @@ import android.widget.RemoteViews;
 
 import com.example.tss.cryptinfo.R;
 import com.example.tss.cryptinfo.actvities.AssetDetailsActivity;
-import com.example.tss.cryptinfo.actvities.AssetActivity;
+import com.example.tss.cryptinfo.actvities.AssetsActivity;
 import com.example.tss.cryptinfo.services.AssetTaskService;
 
 /**
@@ -34,7 +34,7 @@ public class WidgetProvider extends AppWidgetProvider {
                                 int appWidgetId) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_coin_provider);
 
-        Intent intent = new Intent(context, AssetActivity.class);
+        Intent intent = new Intent(context, AssetsActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         views.setOnClickPendingIntent(R.id.widget_header, pendingIntent);
 
@@ -45,9 +45,6 @@ public class WidgetProvider extends AppWidgetProvider {
                 .addNextIntentWithParentStack(clickIntentTemplate)
                 .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setPendingIntentTemplate(R.id.widget_coin_list, clickPendingIntentTemplate);
-
-        // Instruct the widget manager to update the widget
-
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 

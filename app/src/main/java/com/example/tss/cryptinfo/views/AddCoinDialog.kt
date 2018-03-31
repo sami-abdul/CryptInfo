@@ -14,10 +14,10 @@ import android.widget.EditText
 
 
 import com.example.tss.cryptinfo.R
-import com.example.tss.cryptinfo.actvities.AssetActivity
 
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.example.tss.cryptinfo.actvities.AssetsActivity
 
 class AddCoinDialog : DialogFragment() {
 
@@ -71,7 +71,7 @@ class AddCoinDialog : DialogFragment() {
 
     private fun addCoin() {
         val parent = activity
-        (parent as? AssetActivity)?.addCoin(coin!!.text.toString())
+        (parent as? AssetsActivity)?.addCoin(coin!!.text.toString())
         dismissAllowingStateLoss()
     }
 }

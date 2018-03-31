@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 
 import com.example.tss.cryptinfo.R
@@ -26,7 +25,7 @@ class AssetDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_coin_detail)
+        setContentView(R.layout.activity_asset_details)
 
         mToolbar = findViewById(R.id.toolbar)
         setSupportActionBar(mToolbar)

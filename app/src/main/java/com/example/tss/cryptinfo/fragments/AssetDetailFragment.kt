@@ -91,7 +91,7 @@ class AssetDetailFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_coin_detail, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_asset_details, container, false)
         unbinder = ButterKnife.bind(this, rootView)
 
         addBannerAd(rootView)
@@ -103,9 +103,7 @@ class AssetDetailFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val numberUtils = NumberUtils()
 
         if (mCursor != null) {
-
             val histoStr = mCursor!!.getString(ConstantsUtils.POSITION_HISTO)
-
             val landPhone = resources.getBoolean(R.bool.isLandscape) && !resources.getBoolean(R.bool.isTablet)
 
             if (histoStr == null || histoStr.length < 500 || landPhone) {

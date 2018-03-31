@@ -17,6 +17,11 @@ import okhttp3.Request
 import timber.log.Timber
 
 class DetailTaskService : GcmTaskService {
+
+    constructor() {
+
+    }
+
     private val client = OkHttpClient()
 
     private var mContext: Context? = null
