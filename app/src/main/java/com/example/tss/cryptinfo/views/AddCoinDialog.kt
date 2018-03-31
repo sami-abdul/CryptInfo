@@ -21,12 +21,13 @@ import com.example.tss.cryptinfo.actvities.AssetsActivity
 
 class AddCoinDialog : DialogFragment() {
 
-    @BindView(R.id.dialog_add_coin_symbol)
     internal var coin: EditText? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val inflater = LayoutInflater.from(activity)
         @SuppressLint("InflateParams") val addCoinDialogBody = inflater.inflate(R.layout.dialog_add_coin, null)
+
+        coin = addCoinDialogBody.findViewById(R.id.dialog_add_coin_symbol)
 
         ButterKnife.bind(this, addCoinDialogBody)
 

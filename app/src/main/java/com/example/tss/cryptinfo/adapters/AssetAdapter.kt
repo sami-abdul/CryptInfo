@@ -111,6 +111,5 @@ class AssetAdapter(private val mContext: Context, private val mClickHandler: Ass
                     .onClick(mCursor!!.getString(ConstantsUtils.POSITION_SYMBOL),
                             mCursor!!.getString(ConstantsUtils.POSITION_NAME))
         }
-
     }
 }
