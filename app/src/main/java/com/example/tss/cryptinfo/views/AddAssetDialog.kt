@@ -3,8 +3,10 @@ package com.example.tss.cryptinfo.views
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
+import android.database.Cursor
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -12,22 +14,29 @@ import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.EditText
 
-
 import com.example.tss.cryptinfo.R
 
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.tss.cryptinfo.actvities.AssetsActivity
 
-class AddAssetDialog : DialogFragment() {
+class AddAssetDialog() : DialogFragment() {
+
+    private lateinit var cursor: Cursor
+
+    fun setCursor(cursor: Cursor) {
+        this.cursor = cursor
+    }
 
     internal var coin: EditText? = null
+    internal var recyclerView: RecyclerView? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val inflater = LayoutInflater.from(activity)
         @SuppressLint("InflateParams") val addCoinDialogBody = inflater.inflate(R.layout.dialog_add_coin, null)
 
         coin = addCoinDialogBody.findViewById(R.id.dialog_add_coin_symbol)
+        recyclerView = addCoinDialogBody.findViewById(R.id.add_coin_recyclerview)
 
         ButterKnife.bind(this, addCoinDialogBody)
 

@@ -85,7 +85,10 @@ public class AssetsActivity extends AppCompatActivity implements
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(@SuppressWarnings("UnusedParameters") View v) {
-                new AddAssetDialog().show(getSupportFragmentManager(), "CoinDialogFragment");
+                Cursor  cursor = getContentResolver().query(DBContract.CoinEntry.CONTENT_URI,null, null, null, null);
+                AddAssetDialog dialg = new AddAssetDialog();
+                dialg.setCursor(cursor);
+                dialg.show(getSupportFragmentManager(), "CoinDialogFragment");
 
             }
         });
@@ -118,9 +121,6 @@ public class AssetsActivity extends AppCompatActivity implements
                                 DBContract.CoinEntry.COLUMN_SYMBOL + "= ?",
                                 new String[]{cleanInput},
                                 null);
-                Cursor  cursor = getContentResolver().query(DBContract.CoinEntry.CONTENT_URI,null, null, null, null);
-                System.out.println(cursor.getCount());
-
                 if (c.getCount() != 0) {
                     Toast toast =
                             Toast.makeText(AssetsActivity.this,
