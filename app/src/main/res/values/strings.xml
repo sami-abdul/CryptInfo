@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">CryptoCoin</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">CryptInfo</string>
 
     <string name="add_coin" >Add Coin</string>
 

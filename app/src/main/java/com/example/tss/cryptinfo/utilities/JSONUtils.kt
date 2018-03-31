@@ -2,26 +2,23 @@ package com.example.tss.cryptinfo.utilities
 
 import android.content.ContentValues
 import android.content.Context
-import android.content.res.AssetManager
 import android.text.TextUtils
 
 import com.example.tss.cryptinfo.api.Coin
-import com.example.tss.cryptinfo.api.CoinDbContract
-import com.example.tss.cryptinfo.api.CoinPreferences
+import com.example.tss.cryptinfo.api.DBContract
+import com.example.tss.cryptinfo.api.AssetPreferences
 import com.example.tss.cryptinfo.api.News
 
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
 import java.io.IOException
-import java.io.InputStream
 import java.util.ArrayList
 
 
 import timber.log.Timber
 
-object CoinJsonUtils {
+object JSONUtils {
 
     var popCoins = arrayOf("BTC", "ETH", "XRP", "BCH", "ADA", "TRX", "EOS", "LTC", "XLM", "NEM", "NEO", "WTC", "VEN", "XMR", "ICX", "ETC", "DASH", "MIOTA", "BTG", "QTUM")
 
@@ -41,8 +38,6 @@ object CoinJsonUtils {
             inputStream.close()
 
             json = String(buffer)
-            // dangerous
-//            json = String(buffer, "UTF-8")
             String()
         } catch (e: IOException) {
             e.printStackTrace()
@@ -74,36 +69,26 @@ object CoinJsonUtils {
 
     fun extractCoinsFromJson(context: Context, coinJsonStr: String, priceJsonStr: String, symbols: List<String>): List<Coin>? {
 
-        val unitPref = CoinPreferences.getPreferredUnit(context)
+        val unitPref = AssetPreferences.getPreferredUnit(context)
         //Timber.d("Entering extractCoinsFromJson() method...");
         if (TextUtils.isEmpty(coinJsonStr) || TextUtils.isEmpty(priceJsonStr)) {
             return null
         }
-
-        //Timber.d("size of symbols: " + symbols.size());
 
         val coins = ArrayList<Coin>()
 
         try {
             val coinJsonResponse = JSONObject(coinJsonStr)
             val dataObject = coinJsonResponse.getJSONObject("Data")
-
-            //Timber.d("first 500 chars of data object: " + dataObject.toString().substring(0, 500));
-
             val priceJsonResponse = JSONObject(priceJsonStr)
             val rawPriceObject = priceJsonResponse.getJSONObject("RAW")
 
-            //Timber.d("price object: " + rawPriceObject.toString());
-
             for (symbol in symbols) {
-                //Timber.d("Coin symbol: " + symbol);
-
                 val coin = Coin(symbol)
 
                 val coinProperties = dataObject.getJSONObject(symbol)
 
                 if (coinProperties != null) {
-                    //Timber.d(symbol + "'s coinProperties: " + coinProperties.toString());
                     val coinName = coinProperties.getString("CoinName")
                     val url = coinProperties.getString("Url")
                     val imageUrl = coinProperties.getString("ImageUrl")
@@ -133,9 +118,7 @@ object CoinJsonUtils {
                 }
 
                 val coinPriceObject = rawPriceObject.getJSONObject(symbol)
-                //Timber.d(symbol + "'s RAW price data: " + coinPriceObject.toString());
                 val priceProperties = coinPriceObject.getJSONObject(unitPref)
-                //Timber.d(symbol + "'s price data: " + priceProperties.toString());
 
                 if (priceProperties != null) {
 
@@ -150,7 +133,6 @@ object CoinJsonUtils {
 
                     if (symbol == "BTC" && unitPref == "BTC") {
                         Timber.d("BTC special cases")
-                        //price = Double.parseDouble(priceProperties.getString("PRICE"));
                         price = 1.0000
                         Timber.d(symbol + " price: " + price)
                         open24h = java.lang.Double.parseDouble(priceProperties.getString("OPEN24HOUR"))
@@ -187,8 +169,6 @@ object CoinJsonUtils {
                     coin.trend = trend
                     coin.change = change
                     coin.supply = supply
-
-                    //Timber.d(coin.getSymbol() + "Price: " + coin.getPrice());
                 }
 
                 coins.add(coin)
@@ -202,20 +182,15 @@ object CoinJsonUtils {
     }
 
     fun getCoinContentValueFromList(coins: List<Coin>): Array<ContentValues?> {
-        //Timber.d("Entering getCoinContentValueFromList() mehtod...");
-
         Timber.d("number of coins: " + coins.size)
         val contentValues = arrayOfNulls<ContentValues>(coins.size)
 
         var i = 0
         for (coin in coins) {
-            //Timber.d("Iterate coins: " + coin.getCoinName());
             val value = getContentValueFromCoin(coin)
             contentValues[i] = value
             i++
         }
-
-        //Timber.d("number of content values: " + (i+1));
 
         return contentValues
     }
@@ -223,24 +198,24 @@ object CoinJsonUtils {
     fun getContentValueFromCoin(coin: Coin): ContentValues {
         val value = ContentValues()
 
-        value.put(CoinDbContract.CoinEntry.COLUMN_SYMBOL, coin.symbol)
-        value.put(CoinDbContract.CoinEntry.COLUMN_NAME, coin.coinName)
-        value.put(CoinDbContract.CoinEntry.COLUMN_COIN_URL, coin.url)
-        value.put(CoinDbContract.CoinEntry.COLUMN_IMAGE_URL, coin.imageUrl)
-        value.put(CoinDbContract.CoinEntry.COLUMN_ALGORITHM, coin.algorithm)
-        value.put(CoinDbContract.CoinEntry.COLUMN_PROOF_TYPE, coin.proofType)
-        value.put(CoinDbContract.CoinEntry.COLUMN_TOTAL_SUPPLY, coin.totalSupply)
-        value.put(CoinDbContract.CoinEntry.COLUMN_SPONSOR, coin.sponsor)
-        value.put(CoinDbContract.CoinEntry.COLUMN_SUPPLY, coin.supply)
-        value.put(CoinDbContract.CoinEntry.COLUMN_PRICE, coin.price)
-        value.put(CoinDbContract.CoinEntry.COLUMN_MKTCAP, coin.mktcap)
-        value.put(CoinDbContract.CoinEntry.COLUMN_VOL24H, coin.vol24h)
-        value.put(CoinDbContract.CoinEntry.COLUMN_VOL24H2, coin.vol24h2)
-        value.put(CoinDbContract.CoinEntry.COLUMN_OPEN24H, coin.open24h)
-        value.put(CoinDbContract.CoinEntry.COLUMN_HIGH24H, coin.high24h)
-        value.put(CoinDbContract.CoinEntry.COLUMN_LOW24H, coin.low24h)
-        value.put(CoinDbContract.CoinEntry.COLUMN_TREND, coin.trend)
-        value.put(CoinDbContract.CoinEntry.COLUMN_CHANGE, coin.change)
+        value.put(DBContract.CoinEntry.COLUMN_SYMBOL, coin.symbol)
+        value.put(DBContract.CoinEntry.COLUMN_NAME, coin.coinName)
+        value.put(DBContract.CoinEntry.COLUMN_COIN_URL, coin.url)
+        value.put(DBContract.CoinEntry.COLUMN_IMAGE_URL, coin.imageUrl)
+        value.put(DBContract.CoinEntry.COLUMN_ALGORITHM, coin.algorithm)
+        value.put(DBContract.CoinEntry.COLUMN_PROOF_TYPE, coin.proofType)
+        value.put(DBContract.CoinEntry.COLUMN_TOTAL_SUPPLY, coin.totalSupply)
+        value.put(DBContract.CoinEntry.COLUMN_SPONSOR, coin.sponsor)
+        value.put(DBContract.CoinEntry.COLUMN_SUPPLY, coin.supply)
+        value.put(DBContract.CoinEntry.COLUMN_PRICE, coin.price)
+        value.put(DBContract.CoinEntry.COLUMN_MKTCAP, coin.mktcap)
+        value.put(DBContract.CoinEntry.COLUMN_VOL24H, coin.vol24h)
+        value.put(DBContract.CoinEntry.COLUMN_VOL24H2, coin.vol24h2)
+        value.put(DBContract.CoinEntry.COLUMN_OPEN24H, coin.open24h)
+        value.put(DBContract.CoinEntry.COLUMN_HIGH24H, coin.high24h)
+        value.put(DBContract.CoinEntry.COLUMN_LOW24H, coin.low24h)
+        value.put(DBContract.CoinEntry.COLUMN_TREND, coin.trend)
+        value.put(DBContract.CoinEntry.COLUMN_CHANGE, coin.change)
 
         return value
     }
@@ -283,6 +258,4 @@ object CoinJsonUtils {
 
         return newses
     }
-
-
 }

@@ -1,32 +1,32 @@
 package com.example.tss.cryptinfo.utilities;
 
-import com.example.tss.cryptinfo.api.CoinDbContract;
+import com.example.tss.cryptinfo.api.DBContract;
 
 public class ConstantsUtils {
 
     public static final String[] COIN_COLUMNS = {
-            CoinDbContract.CoinEntry.TABLE_NAME + "." + CoinDbContract.CoinEntry._ID,
-            CoinDbContract.CoinEntry.COLUMN_SYMBOL,
-            CoinDbContract.CoinEntry.COLUMN_NAME,
-            CoinDbContract.CoinEntry.COLUMN_COIN_URL,
-            CoinDbContract.CoinEntry.COLUMN_IMAGE_URL,
-            CoinDbContract.CoinEntry.COLUMN_ALGORITHM,
-            CoinDbContract.CoinEntry.COLUMN_PROOF_TYPE,
-            CoinDbContract.CoinEntry.COLUMN_TOTAL_SUPPLY,
-            CoinDbContract.CoinEntry.COLUMN_SPONSOR,
-            CoinDbContract.CoinEntry.COLUMN_SUPPLY,
-            CoinDbContract.CoinEntry.COLUMN_PRICE,
-            CoinDbContract.CoinEntry.COLUMN_MKTCAP,
-            CoinDbContract.CoinEntry.COLUMN_VOL24H,
-            CoinDbContract.CoinEntry.COLUMN_VOL24H2,
-            CoinDbContract.CoinEntry.COLUMN_OPEN24H,
-            CoinDbContract.CoinEntry.COLUMN_HIGH24H,
-            CoinDbContract.CoinEntry.COLUMN_LOW24H,
-            CoinDbContract.CoinEntry.COLUMN_TREND,
-            CoinDbContract.CoinEntry.COLUMN_CHANGE,
-            CoinDbContract.CoinEntry.COLUMN_HISTO,
-            CoinDbContract.CoinEntry.COLUMN_NEWS,
-            CoinDbContract.CoinEntry.COLUMN_UPDATE
+            DBContract.CoinEntry.TABLE_NAME + "." + DBContract.CoinEntry._ID,
+            DBContract.CoinEntry.COLUMN_SYMBOL,
+            DBContract.CoinEntry.COLUMN_NAME,
+            DBContract.CoinEntry.COLUMN_COIN_URL,
+            DBContract.CoinEntry.COLUMN_IMAGE_URL,
+            DBContract.CoinEntry.COLUMN_ALGORITHM,
+            DBContract.CoinEntry.COLUMN_PROOF_TYPE,
+            DBContract.CoinEntry.COLUMN_TOTAL_SUPPLY,
+            DBContract.CoinEntry.COLUMN_SPONSOR,
+            DBContract.CoinEntry.COLUMN_SUPPLY,
+            DBContract.CoinEntry.COLUMN_PRICE,
+            DBContract.CoinEntry.COLUMN_MKTCAP,
+            DBContract.CoinEntry.COLUMN_VOL24H,
+            DBContract.CoinEntry.COLUMN_VOL24H2,
+            DBContract.CoinEntry.COLUMN_OPEN24H,
+            DBContract.CoinEntry.COLUMN_HIGH24H,
+            DBContract.CoinEntry.COLUMN_LOW24H,
+            DBContract.CoinEntry.COLUMN_TREND,
+            DBContract.CoinEntry.COLUMN_CHANGE,
+            DBContract.CoinEntry.COLUMN_HISTO,
+            DBContract.CoinEntry.COLUMN_NEWS,
+            DBContract.CoinEntry.COLUMN_UPDATE
     };
 
     public static final int POSITION_ID = 0;

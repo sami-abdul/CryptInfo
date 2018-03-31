@@ -1,12 +1,12 @@
-package com.example.tss.cryptinfo.views.widget;
+package com.example.tss.cryptinfo.views;
 
 import android.content.Intent;
 import android.widget.RemoteViewsService;
 
-public class CoinWidgetRemoteService extends RemoteViewsService {
+public class WidgetRemoteService extends RemoteViewsService {
 
     @Override
     public RemoteViewsFactory onGetViewFactory(final Intent intent) {
-        return new CoinWidgetRemoteViewFactory(this);
+        return new WidgetRemoteViewFactory(this);
     }
 }

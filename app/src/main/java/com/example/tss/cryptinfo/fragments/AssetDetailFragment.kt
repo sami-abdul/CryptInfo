@@ -14,23 +14,20 @@ import android.widget.TextView
 
 import com.bumptech.glide.Glide
 import com.example.tss.cryptinfo.R
-import com.example.tss.cryptinfo.api.CoinLoader
-import com.example.tss.cryptinfo.api.CoinPreferences
+import com.example.tss.cryptinfo.api.AssetLoader
+import com.example.tss.cryptinfo.api.AssetPreferences
 import com.example.tss.cryptinfo.api.History
 import com.example.tss.cryptinfo.utilities.ConstantsUtils
 import com.example.tss.cryptinfo.utilities.DateFormatter
 import com.example.tss.cryptinfo.utilities.NumberUtils
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -40,7 +37,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.Unbinder
 
-class CoinDetailFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+class AssetDetailFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private var mSymbol: String? = null
     private var mCursor: Cursor? = null
@@ -123,7 +120,7 @@ class CoinDetailFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 mChartView!!.invalidate()
             }
 
-            val unitPref = CoinPreferences.getPreferredUnit(context)
+            val unitPref = AssetPreferences.getPreferredUnit(context)
 
             val price = mCursor!!.getDouble(ConstantsUtils.POSITION_PRICE)
             if (unitPref == getString(R.string.pref_unit_btc_value)) {
@@ -244,7 +241,7 @@ class CoinDetailFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val xAxis = chart.xAxis
         xAxis.textColor = Color.WHITE
         //xAxis.setValueFormatter(new DateFormatter(chart));
-        xAxis.valueFormatter = DateFormatter(context)
+        xAxis.valueFormatter = DateFormatter(context!!)
         xAxis.position = XAxis.XAxisPosition.BOTTOM
 
         xAxis.axisLineColor = backgroundColor
@@ -303,7 +300,7 @@ class CoinDetailFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onCreateLoader(i: Int, bundle: Bundle): Loader<Cursor> {
-        return CoinLoader.newInstanceForCoinSymbol(activity, mSymbol)
+        return AssetLoader.newInstanceForCoinSymbol(activity, mSymbol)
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor) {
@@ -330,8 +327,8 @@ class CoinDetailFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         private val SYMBOL_LABEL = "SYMBOL"
 
-        fun newInstance(symbol: String): CoinDetailFragment {
-            val fragment = CoinDetailFragment()
+        fun newInstance(symbol: String): AssetDetailFragment {
+            val fragment = AssetDetailFragment()
             val args = Bundle()
             args.putString(SYMBOL_LABEL, symbol)
             fragment.arguments = args

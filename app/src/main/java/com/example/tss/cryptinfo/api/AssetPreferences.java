@@ -7,7 +7,7 @@ import android.support.v7.preference.PreferenceManager;
 import com.example.tss.cryptinfo.R;
 
 
-public class CoinPreferences {
+public class AssetPreferences {
     public static String getPreferredUnit(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 

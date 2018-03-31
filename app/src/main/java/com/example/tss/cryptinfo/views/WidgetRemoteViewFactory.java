@@ -1,4 +1,4 @@
-package com.example.tss.cryptinfo.views.widget;
+package com.example.tss.cryptinfo.views;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,17 +9,17 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.example.tss.cryptinfo.R;
-import com.example.tss.cryptinfo.api.CoinDbContract;
-import com.example.tss.cryptinfo.api.CoinPreferences;
+import com.example.tss.cryptinfo.api.DBContract;
+import com.example.tss.cryptinfo.api.AssetPreferences;
 import com.example.tss.cryptinfo.utilities.ConstantsUtils;
 import com.example.tss.cryptinfo.utilities.NumberUtils;
 
 
-public class CoinWidgetRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory{
+public class WidgetRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory{
     private Cursor cursor = null;
     private Context mContext = null;
 
-    public CoinWidgetRemoteViewFactory(Context context){
+    public WidgetRemoteViewFactory(Context context){
         mContext = context;
     }
 
@@ -34,7 +34,7 @@ public class CoinWidgetRemoteViewFactory implements RemoteViewsService.RemoteVie
         }
         final long identityToken = Binder.clearCallingIdentity();
         cursor = mContext.getContentResolver()
-                .query(CoinDbContract.CoinEntry.CONTENT_URI, ConstantsUtils.COIN_COLUMNS, null, null, null);
+                .query(DBContract.CoinEntry.CONTENT_URI, ConstantsUtils.COIN_COLUMNS, null, null, null);
 
         Binder.restoreCallingIdentity(identityToken);
     }
@@ -63,7 +63,7 @@ public class CoinWidgetRemoteViewFactory implements RemoteViewsService.RemoteVie
 
         String symbol = null;
         NumberUtils numberUtils = new NumberUtils();
-        String unitPref = CoinPreferences.getPreferredUnit(mContext);
+        String unitPref = AssetPreferences.getPreferredUnit(mContext);
 
         if (cursor.moveToPosition(position)) {
             symbol = cursor.getString(ConstantsUtils.POSITION_SYMBOL);
@@ -73,12 +73,12 @@ public class CoinWidgetRemoteViewFactory implements RemoteViewsService.RemoteVie
             views.setTextViewText(R.id.wd_symbol, symbol);
 
             if (unitPref.equals("BTC")){
-                views.setTextViewText(R.id.wd_price, numberUtils.btcFormatWithSign.format(price));
+                views.setTextViewText(R.id.wd_price, numberUtils.getBtcFormatWithSign().format(price));
             } else {
-                views.setTextViewText(R.id.wd_price, numberUtils.dollarFormatWithSign.format(price));
+                views.setTextViewText(R.id.wd_price, numberUtils.getDollarFormatWithSign().format(price));
             }
 
-            views.setTextViewText(R.id.wd_trend, numberUtils.percentageFormat.format(trend/100));
+            views.setTextViewText(R.id.wd_trend, numberUtils.getPercentageFormat().format(trend/100));
             if (trend > 0.0) {
                 views.setInt(R.id.wd_trend, mContext.getString(R.string.setBackgroundResource), R.drawable.price_increase_green);
             } else if (trend < 0.0){

@@ -1,4 +1,4 @@
-package com.example.tss.cryptinfo.views.widget;
+package com.example.tss.cryptinfo.views;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -11,18 +11,18 @@ import android.support.v4.app.TaskStackBuilder;
 import android.widget.RemoteViews;
 
 import com.example.tss.cryptinfo.R;
-import com.example.tss.cryptinfo.actvities.CoinDetailActivity;
-import com.example.tss.cryptinfo.actvities.CoinsActivity;
-import com.example.tss.cryptinfo.services.CoinTaskService;
+import com.example.tss.cryptinfo.actvities.AssetDetailsActivity;
+import com.example.tss.cryptinfo.actvities.AssetActivity;
+import com.example.tss.cryptinfo.services.AssetTaskService;
 
 /**
  * Implementation of App Widget functionality.
  */
-public class CoinWidgetProvider extends AppWidgetProvider {
+public class WidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if (CoinTaskService.Companion.getACTION_DATA_UPDATED().equals(intent.getAction())) {
+        if (AssetTaskService.Companion.getACTION_DATA_UPDATED().equals(intent.getAction())) {
 
             AppWidgetManager manager = AppWidgetManager.getInstance(context);
             int ids[] = manager.getAppWidgetIds(new ComponentName(context, getClass()));
@@ -34,13 +34,13 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                                 int appWidgetId) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_coin_provider);
 
-        Intent intent = new Intent(context, CoinsActivity.class);
+        Intent intent = new Intent(context, AssetActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         views.setOnClickPendingIntent(R.id.widget_header, pendingIntent);
 
         setRemoteAdapter(context, views);
 
-        Intent clickIntentTemplate = new Intent(context, CoinDetailActivity.class);
+        Intent clickIntentTemplate = new Intent(context, AssetDetailsActivity.class);
         PendingIntent clickPendingIntentTemplate = TaskStackBuilder.create(context)
                 .addNextIntentWithParentStack(clickIntentTemplate)
                 .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -73,7 +73,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
 
     private void setRemoteAdapter(Context context, @NonNull final RemoteViews views) {
         views.setRemoteAdapter(R.id.widget_coin_list,
-                new Intent(context, CoinWidgetRemoteService.class));
+                new Intent(context, WidgetRemoteService.class));
     }
 }
 

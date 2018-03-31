@@ -19,26 +19,26 @@ import java.util.List;
 
 import timber.log.Timber;
 
-public class CoinProvider extends ContentProvider {
+public class AssetProvider extends ContentProvider {
     private static final int COINS = 100;
     private static final int COIN_SYMBOL = 101;
 
     private static final UriMatcher URI_MATCHER = buildUriMatcher();
 
-    private CoinDbHelper dbHelper;
+    private DBHelper dbHelper;
 
-    public CoinProvider(){}
+    public AssetProvider(){}
 
     private static UriMatcher buildUriMatcher() {
         UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
-        matcher.addURI(CoinDbContract.CONTENT_AUTHORITY, CoinDbContract.PATH_COINS, COINS);
-        matcher.addURI(CoinDbContract.CONTENT_AUTHORITY, CoinDbContract.PATH_COIN_SYMBOL, COIN_SYMBOL);
+        matcher.addURI(DBContract.CONTENT_AUTHORITY, DBContract.PATH_COINS, COINS);
+        matcher.addURI(DBContract.CONTENT_AUTHORITY, DBContract.PATH_COIN_SYMBOL, COIN_SYMBOL);
         return matcher;
     }
 
     @Override
     public boolean onCreate() {
-        dbHelper = new CoinDbHelper(getContext());
+        dbHelper = new DBHelper(getContext());
         return true;
     }
 
@@ -48,9 +48,9 @@ public class CoinProvider extends ContentProvider {
         final int match = URI_MATCHER.match(uri);
         switch (match){
             case COINS:
-                return CoinDbContract.CoinEntry.CONTENT_TYPE;
+                return DBContract.CoinEntry.CONTENT_TYPE;
             case COIN_SYMBOL:
-                return  CoinDbContract.CoinEntry.CONTENT_ITEM_TYPE;
+                return  DBContract.CoinEntry.CONTENT_ITEM_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -89,14 +89,14 @@ public class CoinProvider extends ContentProvider {
         switch (match){
             case COINS: {
                 Timber.d("match coins ...");
-                final long _id = db.insertOrThrow(CoinDbContract.CoinEntry.TABLE_NAME, null, contentValues);
-                String symbol = contentValues.getAsString(CoinDbContract.CoinEntry.COLUMN_SYMBOL);
+                final long _id = db.insertOrThrow(DBContract.CoinEntry.TABLE_NAME, null, contentValues);
+                String symbol = contentValues.getAsString(DBContract.CoinEntry.COLUMN_SYMBOL);
                 Timber.d("inserted id: " + _id);
 
                 if (_id > 0 && symbol != null && !symbol.isEmpty()){
                 //if (_id > 0){
                     getContext().getContentResolver().notifyChange(uri, null);
-                    Uri returnUri = CoinDbContract.CoinEntry.builUriWithSympol(symbol);
+                    Uri returnUri = DBContract.CoinEntry.builUriWithSympol(symbol);
 
                     Timber.d("Inserted uri: " + returnUri.toString());
 
@@ -124,7 +124,7 @@ public class CoinProvider extends ContentProvider {
                 try {
                     for (ContentValues value : values) {
                         db.insert(
-                                CoinDbContract.CoinEntry.TABLE_NAME,
+                                DBContract.CoinEntry.TABLE_NAME,
                                 null,
                                 value
                         );
@@ -178,11 +178,11 @@ public class CoinProvider extends ContentProvider {
         final List<String> paths = uri.getPathSegments();
         switch (match) {
             case COINS: {
-                return builder.table(CoinDbContract.CoinEntry.TABLE_NAME);
+                return builder.table(DBContract.CoinEntry.TABLE_NAME);
             }
             case COIN_SYMBOL: {
                 final String symbol = paths.get(1);
-                return builder.table(CoinDbContract.CoinEntry.TABLE_NAME).where(CoinDbContract.CoinEntry.COLUMN_SYMBOL + "=?", symbol);
+                return builder.table(DBContract.CoinEntry.TABLE_NAME).where(DBContract.CoinEntry.COLUMN_SYMBOL + "=?", symbol);
             }
             default: {
                 throw new UnsupportedOperationException("Unknown uri: " + uri);

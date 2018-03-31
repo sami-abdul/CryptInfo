@@ -4,13 +4,13 @@ import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-public final class CoinDbContract {
+public final class DBContract {
     public static final String CONTENT_AUTHORITY = "com.xiongxh.cryptocoin";
     static final String PATH_COINS = "coins";
     static final String PATH_COIN_SYMBOL = "coins/*";
     private static final Uri BASE_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
-    private CoinDbContract() {
+    private DBContract() {
     }
 
     public static final class CoinEntry implements BaseColumns {
