@@ -1,4 +1,4 @@
-package com.example.tss.cryptinfo.api;
+package com.example.tss.cryptinfo.api.data;
 
 import android.content.ContentProvider;
 import android.content.ContentProviderOperation;
@@ -12,6 +12,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import com.example.tss.cryptinfo.api.SelectionBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

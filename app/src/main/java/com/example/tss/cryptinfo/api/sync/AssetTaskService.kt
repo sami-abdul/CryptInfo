@@ -1,11 +1,11 @@
-package com.example.tss.cryptinfo.services
+package com.example.tss.cryptinfo.api.sync
 
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.database.DatabaseUtils
 
-import com.example.tss.cryptinfo.api.DBContract
+import com.example.tss.cryptinfo.api.data.DBContract
 import com.example.tss.cryptinfo.utilities.JSONUtils
 import com.example.tss.cryptinfo.utilities.ConstantsUtils
 import com.example.tss.cryptinfo.utilities.NetworkUtils

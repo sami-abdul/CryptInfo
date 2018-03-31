@@ -10,7 +10,7 @@ import android.widget.Toast
 
 import com.example.tss.cryptinfo.R
 import com.example.tss.cryptinfo.adapters.SectionPagerAdapter
-import com.example.tss.cryptinfo.services.DetailIntentService
+import com.example.tss.cryptinfo.api.sync.DetailIntentService
 import com.example.tss.cryptinfo.utilities.NetworkUtils
 
 class AssetDetailsActivity : AppCompatActivity() {

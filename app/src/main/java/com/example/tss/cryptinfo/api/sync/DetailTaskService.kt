@@ -1,9 +1,9 @@
-package com.example.tss.cryptinfo.services
+package com.example.tss.cryptinfo.api.sync
 
 import android.content.ContentValues
 import android.content.Context
 
-import com.example.tss.cryptinfo.api.DBContract
+import com.example.tss.cryptinfo.api.data.DBContract
 import com.example.tss.cryptinfo.utilities.ConstantsUtils
 import com.example.tss.cryptinfo.utilities.NetworkUtils
 import com.google.android.gms.gcm.GcmNetworkManager

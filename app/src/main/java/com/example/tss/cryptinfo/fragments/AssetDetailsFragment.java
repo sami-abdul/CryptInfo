@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.tss.cryptinfo.R;
-import com.example.tss.cryptinfo.api.AssetLoader;
-import com.example.tss.cryptinfo.api.AssetPreferences;
+import com.example.tss.cryptinfo.api.data.AssetLoader;
+import com.example.tss.cryptinfo.api.data.AssetPreferences;
 import com.example.tss.cryptinfo.api.History;
 import com.example.tss.cryptinfo.utilities.ConstantsUtils;
 import com.example.tss.cryptinfo.utilities.DateFormatter;

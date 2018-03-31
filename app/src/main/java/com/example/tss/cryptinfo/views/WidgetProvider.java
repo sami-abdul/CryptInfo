@@ -13,7 +13,7 @@ import android.widget.RemoteViews;
 import com.example.tss.cryptinfo.R;
 import com.example.tss.cryptinfo.actvities.AssetDetailsActivity;
 import com.example.tss.cryptinfo.actvities.AssetsActivity;
-import com.example.tss.cryptinfo.services.AssetTaskService;
+import com.example.tss.cryptinfo.api.sync.AssetTaskService;
 
 /**
  * Implementation of App Widget functionality.
