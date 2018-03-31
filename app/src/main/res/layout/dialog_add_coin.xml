@@ -22,4 +22,12 @@
         android:contentDescription="@string/content_test"
         android:inputType="textCapCharacters|textVisiblePassword" />
 
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/add_coin_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

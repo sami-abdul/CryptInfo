@@ -63,7 +63,7 @@ class AssetTaskService : GcmTaskService {
 
         if (initQueryCursor == null || initQueryCursor.count == 0) {
             coinSymbols.clear()
-            coinSymbols.addAll(Arrays.asList(*gtPOP_COIN_SYMBOLS))
+            coinSymbols.addAll(Arrays.asList(*POP_COIN_SYMBOLS))
         } else {
             DatabaseUtils.dumpCursor(initQueryCursor)
             initQueryCursor.moveToFirst()
