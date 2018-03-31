@@ -6,7 +6,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 
 
-import com.example.tss.cryptinfo.data.CoinPreferences;
+import com.example.tss.cryptinfo.api.CoinPreferences;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -67,7 +67,6 @@ public class NetworkUtils {
         try {
             URL priceUrl = new URL(priceUri.toString());
             Timber.d("Calling url: " + priceUrl);
-            System.out.println(priceUrl);
             return priceUrl;
 
         }catch (MalformedURLException e){

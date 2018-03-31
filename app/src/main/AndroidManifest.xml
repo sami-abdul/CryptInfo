@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".coins.CoinsActivity"
+            android:name=".actvities.CoinsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,48 +25,48 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".coindetails.CoinDetailActivity"
-            android:parentActivityName=".coins.CoinsActivity"
+            android:name=".actvities.CoinDetailActivity"
+            android:parentActivityName=".actvities.CoinsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name=".sync.CoinSyncIntentService"
+            android:name=".services.CoinSyncIntentService"
             android:exported="false" />
 
         <provider
-            android:name=".data.CoinProvider"
+            android:name=".api.CoinProvider"
             android:authorities="com.xiongxh.cryptocoin"
             android:enabled="true"
             android:exported="true" />
 
         <service
-            android:name=".sync.CoinTaskService"
+            android:name=".services.CoinTaskService"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".sync.DetailIntentService"
+            android:name=".services.DetailIntentService"
             android:exported="false" />
         <service
-            android:name=".sync.DetailTaskService"
+            android:name=".services.DetailTaskService"
             android:enabled="true"
             android:exported="true" />
 
         <activity
-            android:name=".setting.SettingsActivity"
+            android:name=".actvities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".coins.CoinsActivity">
+            android:parentActivityName=".actvities.CoinsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="CoinsActivity" />
         </activity>
 
         <service
-            android:name=".widget.CoinWidgetRemoteService"
+            android:name=".views.widget.CoinWidgetRemoteService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS">
         </service>
 
-        <receiver android:name=".widget.CoinWidgetProvider">
+        <receiver android:name=".views.widget.CoinWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="ACTION_DATA_UPDATED" />

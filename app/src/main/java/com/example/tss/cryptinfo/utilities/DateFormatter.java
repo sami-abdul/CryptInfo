@@ -2,7 +2,7 @@ package com.example.tss.cryptinfo.utilities;
 
 import android.content.Context;
 
-import com.example.tss.cryptinfo.data.CoinPreferences;
+import com.example.tss.cryptinfo.api.CoinPreferences;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
