@@ -19,7 +19,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.tss.cryptinfo.actvities.AssetsActivity
 
-class AddCoinDialog : DialogFragment() {
+class AddAssetDialog : DialogFragment() {
 
     internal var coin: EditText? = null
 

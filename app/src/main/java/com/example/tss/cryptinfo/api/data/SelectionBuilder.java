@@ -1,4 +1,4 @@
-package com.example.tss.cryptinfo.api;
+package com.example.tss.cryptinfo.api.data;
 
 import android.content.ContentValues;
 import android.database.Cursor;
