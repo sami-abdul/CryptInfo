@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#37474F</color>
+    <color name="colorPrimary">#000</color>
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#0288D1</color>
 
@@ -11,7 +11,7 @@
     <color name="dialog_background">#5a595b</color>
 
     <color name="colorBlueGrey500">#607D8B</color>
-    <color name="colorBlueGrey700">#455A64</color>
+    <color name="colorBlueGrey700">#1B2431</color>
     <color name="colorBlueGrey800">#37474F</color>
 
     <color name="colorGreyXXL">#FAFAFA</color>
