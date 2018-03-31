@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.Uri
 
 
-import com.example.tss.cryptinfo.api.AssetPreferences
+import com.example.tss.cryptinfo.api.data.AssetPreferences
 
 import java.net.MalformedURLException
 import java.net.URL

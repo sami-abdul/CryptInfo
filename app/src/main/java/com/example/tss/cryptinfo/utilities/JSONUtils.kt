@@ -5,8 +5,8 @@ import android.content.Context
 import android.text.TextUtils
 
 import com.example.tss.cryptinfo.api.Coin
-import com.example.tss.cryptinfo.api.DBContract
-import com.example.tss.cryptinfo.api.AssetPreferences
+import com.example.tss.cryptinfo.api.data.DBContract
+import com.example.tss.cryptinfo.api.data.AssetPreferences
 import com.example.tss.cryptinfo.api.News
 
 import org.json.JSONException

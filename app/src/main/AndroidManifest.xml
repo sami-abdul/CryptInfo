@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".CryptoCoinApp"
+        android:name=".CryptInfoApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,24 +25,24 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name=".services.AssetSyncIntentService"
+            android:name=".api.sync.AssetSyncIntentService"
             android:exported="false" />
 
         <provider
-            android:name=".api.AssetProvider"
+            android:name=".api.data.AssetProvider"
             android:authorities="com.xiongxh.cryptocoin"
             android:enabled="true"
             android:exported="true" />
 
         <service
-            android:name=".services.AssetTaskService"
+            android:name=".api.sync.AssetTaskService"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".services.DetailIntentService"
+            android:name=".api.sync.DetailIntentService"
             android:exported="false" />
         <service
-            android:name=".services.DetailTaskService"
+            android:name=".api.sync.DetailTaskService"
             android:enabled="true"
             android:exported="true" />
         <service

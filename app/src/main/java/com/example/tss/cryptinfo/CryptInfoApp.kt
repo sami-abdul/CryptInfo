@@ -6,7 +6,7 @@ import android.util.Log
 
 import timber.log.Timber
 
-class CryptoCoinApp : Application() {
+class CryptInfoApp : Application() {
 
     override fun onCreate() {
         super.onCreate()

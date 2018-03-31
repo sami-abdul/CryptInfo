@@ -9,8 +9,8 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.example.tss.cryptinfo.R;
-import com.example.tss.cryptinfo.api.DBContract;
-import com.example.tss.cryptinfo.api.AssetPreferences;
+import com.example.tss.cryptinfo.api.data.DBContract;
+import com.example.tss.cryptinfo.api.data.AssetPreferences;
 import com.example.tss.cryptinfo.utilities.ConstantsUtils;
 import com.example.tss.cryptinfo.utilities.NumberUtils;
 

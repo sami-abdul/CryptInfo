@@ -1,6 +1,6 @@
 package com.example.tss.cryptinfo.utilities;
 
-import com.example.tss.cryptinfo.api.DBContract;
+import com.example.tss.cryptinfo.api.data.DBContract;
 
 public class ConstantsUtils {
 

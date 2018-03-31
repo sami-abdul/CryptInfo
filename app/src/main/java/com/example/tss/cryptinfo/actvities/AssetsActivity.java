@@ -24,10 +24,10 @@ import android.widget.Toast;
 
 import com.example.tss.cryptinfo.R;
 import com.example.tss.cryptinfo.adapters.AssetAdapter;
-import com.example.tss.cryptinfo.api.AssetLoader;
-import com.example.tss.cryptinfo.api.DBContract;
-import com.example.tss.cryptinfo.services.AssetSyncIntentService;
-import com.example.tss.cryptinfo.services.AssetTaskService;
+import com.example.tss.cryptinfo.api.data.AssetLoader;
+import com.example.tss.cryptinfo.api.data.DBContract;
+import com.example.tss.cryptinfo.api.sync.AssetSyncIntentService;
+import com.example.tss.cryptinfo.api.sync.AssetTaskService;
 import com.example.tss.cryptinfo.utilities.JSONUtils;
 import com.example.tss.cryptinfo.utilities.NetworkUtils;
 import com.example.tss.cryptinfo.views.AddCoinDialog;

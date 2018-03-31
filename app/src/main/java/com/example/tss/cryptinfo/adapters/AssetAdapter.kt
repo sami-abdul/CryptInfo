@@ -10,7 +10,7 @@ import android.widget.TextView
 
 
 import com.example.tss.cryptinfo.R
-import com.example.tss.cryptinfo.api.AssetPreferences
+import com.example.tss.cryptinfo.api.data.AssetPreferences
 import com.example.tss.cryptinfo.utilities.ConstantsUtils
 import com.example.tss.cryptinfo.utilities.NumberUtils
 
@@ -111,6 +111,5 @@ class AssetAdapter(private val mContext: Context, private val mClickHandler: Ass
                     .onClick(mCursor!!.getString(ConstantsUtils.POSITION_SYMBOL),
                             mCursor!!.getString(ConstantsUtils.POSITION_NAME))
         }
-
     }
 }
