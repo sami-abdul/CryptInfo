@@ -30,7 +30,7 @@ import com.example.tss.cryptinfo.api.sync.AssetSyncIntentService;
 import com.example.tss.cryptinfo.api.sync.AssetTaskService;
 import com.example.tss.cryptinfo.utilities.JSONUtils;
 import com.example.tss.cryptinfo.utilities.NetworkUtils;
-import com.example.tss.cryptinfo.views.AddCoinDialog;
+import com.example.tss.cryptinfo.views.AddAssetDialog;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.PeriodicTask;
 import com.google.android.gms.gcm.Task;
@@ -85,7 +85,7 @@ public class AssetsActivity extends AppCompatActivity implements
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(@SuppressWarnings("UnusedParameters") View v) {
-                new AddCoinDialog().show(getSupportFragmentManager(), "CoinDialogFragment");
+                new AddAssetDialog().show(getSupportFragmentManager(), "CoinDialogFragment");
 
             }
         });
@@ -95,8 +95,6 @@ public class AssetsActivity extends AppCompatActivity implements
             long flex = 10L;
             String periodicTag = getString(R.string.tag_periodic);
 
-            // create a periodic task to pull coins once every hour after the app has been opened. This
-            // is so Widget data stays up to date.
             PeriodicTask periodicTask = new PeriodicTask.Builder()
                     .setService(AssetTaskService.class)
                     .setPeriod(period)
@@ -112,18 +110,16 @@ public class AssetsActivity extends AppCompatActivity implements
 
     public void addCoin(String symbol) {
         if (symbol != null && !symbol.isEmpty()) {
-
             if (NetworkUtils.INSTANCE.isNetworkStatusAvailable(mContext)) {
-                //mSwipeRefreshLayout.setRefreshing(true);
                 String cleanInput = symbol.trim().toUpperCase();
-
-                //Timber.d("Clean input: " + cleanInput);
                 Cursor c = getContentResolver()
                         .query(DBContract.CoinEntry.CONTENT_URI,
                                 new String[]{DBContract.CoinEntry.COLUMN_SYMBOL},
                                 DBContract.CoinEntry.COLUMN_SYMBOL + "= ?",
                                 new String[]{cleanInput},
                                 null);
+                Cursor  cursor = getContentResolver().query(DBContract.CoinEntry.CONTENT_URI,null, null, null, null);
+                System.out.println(cursor.getCount());
 
                 if (c.getCount() != 0) {
                     Toast toast =
@@ -145,11 +141,9 @@ public class AssetsActivity extends AppCompatActivity implements
                         toast.show();
                         return;
                     } else {
-                        // Add the Coin to DB
                         mServiceIntent.putExtra(getString(R.string.tag_tag), getString(R.string.tag_add_value));
                         mServiceIntent.putExtra(getString(R.string.symbol_tag), cleanInput);
                         startService(mServiceIntent);
-                        //Timber.d(cleanInput + " is added.");
                         c.close();
                     }
                 }
@@ -161,7 +155,6 @@ public class AssetsActivity extends AppCompatActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_coins, menu);
         return true;
     }
@@ -182,7 +175,6 @@ public class AssetsActivity extends AppCompatActivity implements
     }
 
     private void refresh() {
-        //Timber.d("Refreshing data ...");
         mServiceIntent.putExtra(getString(R.string.tag_tag), getString(R.string.tag_init));
         startService(mServiceIntent);
     }
@@ -193,14 +185,11 @@ public class AssetsActivity extends AppCompatActivity implements
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        //Timber.d("Loading data ......");
         return AssetLoader.newAllCoinsInstance(this);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        //Timber.d("Loading finished...");
-
         mCoinAdapter.swapCursor(cursor);
         mCursor = cursor;
 
