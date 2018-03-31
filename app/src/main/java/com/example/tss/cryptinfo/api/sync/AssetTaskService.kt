@@ -24,8 +24,7 @@ import okhttp3.Request
 class AssetTaskService : GcmTaskService {
 
     companion object {
-        private val POP_COIN_SYMBOLS = arrayOf("BTC", "ETH", "XRP", "BCH", "ADA", "TRX", "EOS", "LTC", "MTL", "CHAT")
-//        private val POP_COIN_SYMBOLS = arrayOf("BTC", "ETH", "XRP")
+        private val POP_COIN_SYMBOLS = arrayOf("BTC")
         val ACTION_DATA_UPDATED = "ACTION_DATA_UPDATED"
     }
 
@@ -63,7 +62,8 @@ class AssetTaskService : GcmTaskService {
 
         if (initQueryCursor == null || initQueryCursor.count == 0) {
             coinSymbols.clear()
-            coinSymbols.addAll(Arrays.asList(*gtPOP_COIN_SYMBOLS))
+            coinSymbols.addAll(Arrays.asList(*POP_COIN_SYMBOLS))
+            println(coinSymbols)
         } else {
             DatabaseUtils.dumpCursor(initQueryCursor)
             initQueryCursor.moveToFirst()

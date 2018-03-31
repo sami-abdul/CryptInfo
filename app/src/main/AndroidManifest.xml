@@ -16,12 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".actvities.AssetActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:name=".actvities.AssetsActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".actvities.AssetDetailsActivity"
-            android:parentActivityName=".actvities.AssetActivity"
+            android:parentActivityName=".actvities.AssetsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
@@ -61,7 +60,7 @@
                 android:resource="@xml/coin_widget_provider_info" />
         </receiver>
 
-        <activity android:name=".actvities.AssetsActivity">
+        <activity android:name=".actvities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
