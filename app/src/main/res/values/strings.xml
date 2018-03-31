@@ -1,3 +1,120 @@
 <resources>
-    <string name="app_name">CryptInfo</string>
+    <string name="app_name">CryptoCoin</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="add_coin" >Add Coin</string>
+
+    <string name="error_no_network" >No network or other error.</string>
+    <string name="network_not_connected" >Oops! The internet is not connected.</string>
+
+    <string name="action_refresh" >Refresh</string>
+    <string name="action_change_unit" >Change Unit</string>
+    <string name="action_change_interval" >Chart Interval</string>
+    <string name="load_finished" >Load Finished</string>
+
+    <string name="search_symbol" >Add Coin Symbol</string>
+    <string name="content_test" >Search for a Coin Symbol</string>
+    <string name="input_hint" translatable="false">BTC, ETH, BCH, LTC, etc</string>
+    <string name="input_default"></string>
+    <string name="dialog_cancel" translatable="true">Cancel</string>
+    <string name="dialog_add" translatable="true">Add</string>
+    <string name="error_coin_not_found">No coin found by this symbol.</string>
+    <string name="error_coin_already_saved">This coin is already saved!</string>
+
+    <string name="no_news" >No news found.</string>
+
+    <string name="interstitial_ad_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+
+    <string name="base_logo_url" translatable="false">https://www.cryptocompare.com</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="left_bracket">(</string>
+    <string name="right_bracket">)</string>
+    <string name="left_bracket_plus">(+</string>
+
+    <string name="market_capital">MARKET</string>
+    <string name="news_capital">NEWS</string>
+
+    <string name="action_acknowledgements">Acknowledgements</string>
+    <string name="acknowledgements">Acknowledgements: Powered by CryptoCompare.com and NewsAPI.org</string>
+    <string name="close">CLOSE</string>
+
+    <!-- Strings related to Settings -->
+    <string name="pref_unit_key" translatable="false">unit</string>
+    <string name="pref_unit_label">Settlement Currency</string>
+
+    <string name="pref_unit_label_usd">USD</string>
+    <string name="pref_unit_label_btc">BTC</string>
+
+    <string name="pref_unit_usd_value" translatable="false">USD</string>
+    <string name="pref_unit_btc_value" translatable="false">BTC</string>
+
+    <string name="pref_interval_key" translatable="false">interval</string>
+    <string name="pref_interval_label">HistoChart Interval</string>
+
+    <string name="pref_interval_label_histominute">Minute</string>
+    <string name="pref_interval_label_histohour">Hour</string>
+    <string name="pref_interval_label_histoday">Day</string>
+
+    <string name="pref_interval_histominute_value" translatable="false">minute</string>
+    <string name="pref_interval_histohour_value" translatable="false">hour</string>
+    <string name="pref_interval_histoday_value" translatable="false">day</string>
+
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+
+    <string name="empty_message" translatable="true">No Data is Available</string>
+    <string name="setBackgroundResource" translatable="false">setBackgroundResource</string>
+
+    <string name="widget_coin_icon">Widget Coin Icon</string>
+
+    <!-- Strings related to tags and labels-->
+    <string name="tag_tag" translatable="false">tag</string>
+    <string name="symbol_tag" translatable="false">symbol</string>
+    <string name="symbol_tag_capital" translatable="false">SYMBOL</string>
+    <string name="name_tag_capital" translatable="false">NAME</string>
+
+    <string name="tag_detail_value" translatable="false">detail</string>
+    <string name="tag_add_value" translatable="false">add</string>
+
+    <string name="tag_yes" translatable="false">Yes</string>
+    <string name="tag_no" translatable="false">No</string>
+    <string name="tag_na" translatable="false">N/A</string>
+
+    <string name="tag_periodic" translatable="false">periodic</string>
+    <string name="tag_init" translatable="false">init</string>
+
+    <string name="history_label" translatable="false">historyLabel</string>
+    <string name="low_key" translatable="false">low</string>
+    <string name="high_key" translatable="false">high</string>
+    <string name="data_key" translatable="false">Data</string>
+    <string name="time_key" translatable="false">time</string>
+
+    <string name="pref_unit_btc_value_bref" translatable="false">B</string>
+
+    <!-- Strings used in layout files-->
+    <string name="news_title" >News Title</string>
+    <string name="news_description" >This is news about ...</string>
+    <string name="news_author" >News Author</string>
+    <string name="publish_time" >Publish Time</string>
+
+    <string name="open_24h" >Open 24h:</string>
+    <string name="low_24h" >Low 24h:</string>
+    <string name="high_24h" >High 24h:</string>
+    <string name="volume_24h" >Volume 24h:</string>
+    <string name="volume_24h_to" >Volume 24h To:</string>
+    <string name="market_cap" >Mkt.Cap:</string>
+    <string name="max_supply" >Max Suppl.:</string>
+    <string name="supply" >Supply:</string>
+    <string name="algorithm" >Algorithm:</string>
+    <string name="proof_type" >Proof Type:</string>
+    <string name="sponsored" >Sponsored:</string>
+
+    <string name="dollar_sign" >$</string>
+    <string name="fake_price" >1234.56</string>
+    <string name="fake_change_percent" >+1.23%</string>
+    <string name="fake_change" >($0.43)</string>
+
+
 </resources>
